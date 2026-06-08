@@ -93,8 +93,6 @@ The project is designed to simulate a business email workflow where routine mess
 * Stores processed emails, generated replies, statuses, and error logs.
 * Supports external workflow integrations such as Google Sheets and Telegram notifications.
 
-**Why it matters:**
-
 This project demonstrates practical AI workflow automation, structured LLM outputs, fallback logic, database-backed tracking, and real business process automation.
 
 ---
@@ -102,6 +100,7 @@ This project demonstrates practical AI workflow automation, structured LLM outpu
 ### 4. Application Process Agent
 
 **Repository:** https://github.com/KostiantynBk/jobAnalysis
+**Demo:** https://youtu.be/-2XxQz76ZGk
 **Tech stack:** Python, OpenAI Responses API, SQLite, JavaScript
 
 Application Process Agent is an AI-powered job application assistant that analyzes job descriptions and compares them against a predefined resume profile.

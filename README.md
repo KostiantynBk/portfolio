@@ -128,6 +128,30 @@ This project demonstrates AI-assisted workflow automation, structured outputs, m
 
 ---
 
+### 5. MEDICA Business Analytics Dashboard
+
+**Tech stack:** Python, pandas, SQLite, SQL, Streamlit, Plotly, OpenAI API
+
+MEDICA Business Analytics Dashboard is a simulated end-to-end business analytics system for a scaling medical/e-commerce company. The project combines sales, CRM, marketing, payment, refund, and customer-service data into a unified SQLite analytics layer, calculates key business KPIs, visualizes them in an interactive Streamlit dashboard, and generates automated business reports.
+
+The project uses realistic synthetic data only, so it demonstrates a complete BI workflow without relying on private company data.
+
+**Main features:**
+
+* Generates synthetic business data for customers, orders, order items, products, marketing spend, CRM leads, payments, refunds, and support tickets.
+* Loads all datasets into a SQLite analytics database with useful indexes.
+* Calculates KPIs including revenue, gross profit, gross margin, CAC, LTV, ROAS, ROMI, CPO, conversion rate, retention, refund rate, and repeat purchase rate.
+* Includes reusable SQL analysis for revenue, margin, CAC, ROAS/ROMI, CPO, conversion, retention, refunds, and profit leaks.
+* Builds an interactive Streamlit dashboard with executive, marketing, CRM, product profitability, customer retention, and profit-leak analysis views.
+* Generates an automated weekly Markdown business report with KPI summaries and recommendations.
+* Includes optional OpenAI-powered business insight generation that uses only calculated KPI data.
+
+**Why it matters:**
+
+This project demonstrates practical business intelligence work: data generation, data modeling, SQL analysis, KPI design, dashboarding, reporting automation, and AI-assisted executive insights for a realistic medical e-commerce scenario.
+
+---
+
 ## Professional Experience
 
 ### Backend Engineer — Voxum

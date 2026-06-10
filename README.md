@@ -19,7 +19,34 @@ This portfolio contains selected projects that demonstrate practical experience 
 
 ## Featured Projects
 
-### 1. Terminal AI Trading Research Agent
+### 1. Automated Research Multi-Agent System
+
+**Repository:** https://github.com/KostiantynBk/automatedResearch
+**Tech stack:** Python, OpenAI API, Structured Outputs, Pydantic, FastAPI, SQLite, argparse
+
+Automated Research Multi-Agent System is a Python backend prototype that researches a user-provided topic and generates a structured report through a sequential pipeline of specialized AI agents.
+
+The system separates planning, research, writing, and critique into dedicated agent roles. It uses Pydantic models and OpenAI structured outputs to keep agent responses reliable and parseable, with fallback behavior when API credentials or external services are unavailable.
+
+**Main features:**
+
+* Planner agent breaks a research request into clear sub-tasks and success criteria.
+* Researcher agent gathers and organizes findings for each task.
+* Writer agent compiles findings into a readable structured report.
+* Critic agent evaluates the final report for quality, completeness, clarity, and factual grounding.
+* Includes an improvement loop when the critic score is below the configured quality threshold.
+* Uses Pydantic models for structured data flow between agents.
+* Saves research sessions, generated reports, critic feedback, and metadata in SQLite.
+* Provides both a CLI interface and FastAPI endpoints with interactive docs.
+* Handles missing OpenAI API keys and API failures through deterministic fallback behavior.
+
+**Why it matters:**
+
+This project demonstrates practical multi-agent orchestration, role-based AI system design, structured LLM outputs, local persistence, evaluation loops, CLI/API delivery, and reliability-focused backend engineering.
+
+---
+
+### 2. Terminal AI Trading Research Agent
 
 **Repository:** https://github.com/KostiantynBk/terminalTradingAgent
 **Tech stack:** Python, OpenAI Responses API, SQLite, Pydantic, Binance Public Market Data API, CLI, systemd, Ubuntu VPS
@@ -46,7 +73,7 @@ This project demonstrates terminal-based AI agent development, local memory mana
 
 ---
 
-### 2. X Market Signal Monitor
+### 3. X Market Signal Monitor
 
 **Repository:** https://github.com/KostiantynBk/copyTrading
 **Tech stack:** Python, Playwright, OpenAI Responses API, Pydantic, systemd, Ubuntu VPS
@@ -72,7 +99,7 @@ This project demonstrates browser automation, AI-based signal extraction, local 
 
 ---
 
-### 3. AI Email Triage & Reply Automation Agent
+### 4. AI Email Triage & Reply Automation Agent
 
 **Repository:** https://github.com/KostiantynBk/emailReply
 **Demo:** https://youtu.be/gN160zCNbAA
@@ -97,7 +124,7 @@ This project demonstrates practical AI workflow automation, structured LLM outpu
 
 ---
 
-### 4. Application Process Agent
+### 5. Application Process Agent
 
 **Repository:** https://github.com/KostiantynBk/jobAnalysis
 **Demo:** https://youtu.be/-2XxQz76ZGk
@@ -128,7 +155,7 @@ This project demonstrates AI-assisted workflow automation, structured outputs, m
 
 ---
 
-### 5. Lead Processing MVP
+### 6. Lead Processing MVP
 
 **Repository:** https://github.com/KostiantynBk/jobTask
 **Tech stack:** Python, FastAPI, OpenAI API, SQLite, Telegram Bot API, Pydantic
@@ -154,7 +181,7 @@ This project demonstrates a pragmatic MVP backend workflow: API input handling, 
 
 ---
 
-### 6. MEDICA Business Analytics Dashboard
+### 7. MEDICA Business Analytics Dashboard
 
 **Tech stack:** Python, pandas, SQLite, SQL, Streamlit, Plotly, OpenAI API
 

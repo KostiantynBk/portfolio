@@ -128,7 +128,33 @@ This project demonstrates AI-assisted workflow automation, structured outputs, m
 
 ---
 
-### 5. MEDICA Business Analytics Dashboard
+### 5. Lead Processing MVP
+
+**Repository:** https://github.com/KostiantynBk/jobTask
+**Tech stack:** Python, FastAPI, OpenAI API, SQLite, Telegram Bot API, Pydantic
+
+Lead Processing MVP is a small backend prototype for processing landing-page lead submissions after a form is sent.
+
+The project receives JSON lead data, normalizes it, generates an AI summary, classifies the lead, stores the result in SQLite, and sends a Telegram notification when credentials are configured.
+
+**Main features:**
+
+* Exposes a FastAPI endpoint for receiving lead submissions.
+* Parses and validates JSON request bodies with Pydantic.
+* Normalizes submitted fields such as email, budget, services, timeline, and source.
+* Uses the OpenAI API to generate a concise summary of the lead.
+* Classifies leads as hot, warm, or cold using a transparent rule-based score.
+* Stores raw payloads, normalized payloads, AI summaries, scores, classifications, and notification status in SQLite.
+* Sends Telegram notifications through the Telegram Bot API when bot credentials are configured.
+* Includes example payloads and clear launch instructions for local testing.
+
+**Why it matters:**
+
+This project demonstrates a pragmatic MVP backend workflow: API input handling, JSON normalization, AI integration, lead scoring, local persistence, and external notification delivery.
+
+---
+
+### 6. MEDICA Business Analytics Dashboard
 
 **Tech stack:** Python, pandas, SQLite, SQL, Streamlit, Plotly, OpenAI API
 

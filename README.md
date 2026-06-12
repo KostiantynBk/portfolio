@@ -183,6 +183,7 @@ This project demonstrates a pragmatic MVP backend workflow: API input handling, 
 
 ### 7. MEDICA Business Analytics Dashboard
 
+**Repository:** https://github.com/KostiantynBk/MEDICABusinessAnalyticsDashboard
 **Tech stack:** Python, pandas, SQLite, SQL, Streamlit, Plotly, OpenAI API
 
 MEDICA Business Analytics Dashboard is a simulated end-to-end business analytics system for a scaling medical/e-commerce company. The project combines sales, CRM, marketing, payment, refund, and customer-service data into a unified SQLite analytics layer, calculates key business KPIs, visualizes them in an interactive Streamlit dashboard, and generates automated business reports.

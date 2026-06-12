@@ -205,6 +205,33 @@ This project demonstrates practical business intelligence work: data generation,
 
 ---
 
+### 8. Law Firm Voice Intake Agent
+
+**Repository:** https://github.com/KostiantynBk/lawFirmVoiceIntakeAgent
+**Tech stack:** Python, FastAPI, Vapi.ai, OpenAI API (gpt-4o), Pydantic, SQLite, vanilla JS
+
+Law Firm Voice Intake Agent is a Python backend that integrates with Vapi.ai to handle inbound phone calls for a personal injury law firm. An AI agent named Alex guides callers through a structured 9-stage intake flow, automatically qualifies or disqualifies them, and logs structured lead data for attorney review.
+
+The system is designed for Morrison & Associates, a fictional personal injury firm, and demonstrates how AI voice agents can replace manual phone screening at scale.
+
+**Main features:**
+
+* Handles Vapi.ai webhook events: call start, mid-call transcript turns, and end-of-call reports.
+* Runs a 9-stage conversation state machine: greeting, case type, incident date, injury check, fault determination, treatment, contact capture, booking, and closing.
+* Automatically detects ineligible cases based on statute of limitations (3+ years), no reported physical injury, or case type outside personal injury.
+* Refers callers with non-personal-injury matters (divorce, criminal, contract) to a state bar referral line and sets outcome to REFERRED_OUT.
+* Uses per-stage LLM slot extraction with structured JSON outputs to capture name, case type, incident date, injury status, fault, treatment history, phone number, and appointment slot.
+* Extracts a full structured lead summary at end of call using `openai.beta.chat.completions.parse()` with a Pydantic response model.
+* Persists all calls, turn-by-turn transcripts, and structured lead data in SQLite.
+* Includes a single-file vanilla JS dashboard: call list with color-coded outcomes, full transcript view, and structured lead card per call. Auto-refreshes every 30 seconds.
+* Conversation simulation tests cover happy path, old incident, no injury, wrong practice area, and difficult caller scenarios.
+
+**Why it matters:**
+
+This project demonstrates voice AI integration, multi-stage conversation orchestration, structured LLM outputs, business-rule gate checking, end-to-end lead capture, and a practical admin dashboard — all within a focused, real-world use case.
+
+---
+
 ## Professional Experience
 
 ### Backend Engineer — Voxum

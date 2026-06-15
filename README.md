@@ -237,7 +237,7 @@ This project demonstrates voice AI integration, multi-stage conversation orchest
 
 ### 9. DocsRAG — Retrieval-Augmented Documentation Assistant
 
-**Repository:** https://github.com/KostiantynBk/docsRAG
+**Repository:** https://github.com/KostiantynBk/ragAssistant 
 **Tech stack:** Python, OpenAI API, Chroma, Sentence-Transformers, LangChain, FastAPI, Pydantic, SQLite
 
 DocsRAG is a production-style RAG pipeline that answers questions over a technical-docs corpus (LangChain docs) with cited, schema-validated responses. The project benchmarks two chunking strategies and two retrieval configurations, measuring quality with a purpose-built evaluation harness and an LLM-as-judge faithfulness check.

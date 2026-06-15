@@ -14,6 +14,8 @@ This portfolio contains selected projects that demonstrate practical experience 
 * trading research workflows
 * CLI tools and terminal-based agents
 * systemd / Ubuntu VPS deployment
+* RAG pipelines and vector search
+* retrieval evaluation and LLM-as-judge
 
 ---
 
@@ -230,6 +232,31 @@ The system is designed for Morrison & Associates, a fictional personal injury fi
 **Why it matters:**
 
 This project demonstrates voice AI integration, multi-stage conversation orchestration, structured LLM outputs, business-rule gate checking, end-to-end lead capture, and a practical admin dashboard — all within a focused, real-world use case.
+
+---
+
+### 9. DocsRAG — Retrieval-Augmented Documentation Assistant
+
+**Repository:** https://github.com/KostiantynBk/docsRAG
+**Tech stack:** Python, OpenAI API, Chroma, Sentence-Transformers, LangChain, FastAPI, Pydantic, SQLite
+
+DocsRAG is a production-style RAG pipeline that answers questions over a technical-docs corpus (LangChain docs) with cited, schema-validated responses. The project benchmarks two chunking strategies and two retrieval configurations, measuring quality with a purpose-built evaluation harness and an LLM-as-judge faithfulness check.
+
+**Main features:**
+
+* Ingests markdown documentation into two Chroma vector database collections using two chunking strategies: recursive character splitting and markdown-header-aware splitting.
+* Retrieves relevant chunks via OpenAI `text-embedding-3-small` embeddings and cosine similarity search, then optionally re-scores results with a `cross-encoder/ms-marco-MiniLM-L-6-v2` cross-encoder.
+* Generates answers with `gpt-4o-mini` using a strict context-grounding prompt; every answer includes inline source citations referencing doc ID and chunk index.
+* Validates all outputs with Pydantic v2: `RAGAnswer` carries the answer text, a `sources` list, a `grounded` boolean, and latency.
+* Runs an agent loop using OpenAI function-calling, exposing retrieval as a `retrieve_docs` tool so the model decides when and what to retrieve.
+* Evaluates all four configurations (2 chunking × 2 reranker) with an automated harness reporting Hit@1/5/10, MRR, faithfulness score, and average latency.
+* Logs every query and every evaluation run to SQLite for reproducible benchmarking.
+* Serves the full pipeline via a FastAPI endpoint (`POST /ask`, `GET /eval/latest`, `GET /health`).
+* Includes 14 unit tests covering chunking, retrieval, reranking, and the API layer.
+
+**Why it matters:**
+
+This project demonstrates end-to-end RAG engineering: chunking strategy comparison, embedding-based dense retrieval, cross-encoder reranking, structured output validation, agent-loop design, and a rigorous evaluation harness — all wired together into a deployable FastAPI service.
 
 ---
 

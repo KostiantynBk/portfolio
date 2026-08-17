@@ -345,6 +345,29 @@ Worked as a backend engineer on Voxum, an online trading automation startup app 
 
 ---
 
+### Backend Engineer / Automation Lead — Mediaverse Pte. Ltd.
+
+**Role:** Backend Engineer, transitioning into technical project management
+**Period:** 04/2026 – Present
+**Type:** Remote contractor, NDA-protected codebase and strategy content
+
+Working on a private algorithmic trading automation system, building backtesting and replay infrastructure for futures market-microstructure strategies, and progressively taking on technical project management: scoping and reviewing a second developer's work, and directing AI coding agents end-to-end.
+
+**High-level responsibilities:**
+
+* Built tick- and bar-level replay/backtesting infrastructure for futures market data, including versioned result storage and comparison harnesses across strategy variants.
+* Designed data pipelines separating measured findings from unverified/placeholder parameters, keeping strategy specification traceable to the domain expert who owns it.
+* Transitioned from individual contributor to supervising a second developer: writing scoped task specs, reviewing deliverables, and defining explicit boundaries between "build the mechanism" and "decide the strategy."
+* Directed AI coding agents (Claude Code CLI) and a VPS-based autonomous agent for build, test, and infrastructure workflows, with explicit guardrails around what agents may write, execute, or spend.
+* Operated under a "verified vs. claimed" discipline: treated passing tests and agent self-reports as claims requiring independent confirmation, not as evidence of correctness on their own.
+* Worked under an NDA; strategy logic, parameters, and internal implementation details cannot be shared.
+
+**Why it matters:**
+
+This role demonstrates the shift from writing backend/automation code to owning delivery: task decomposition for another developer, agent-orchestration discipline (including deliberately constraining agent authority over authoritative documents and spend), and backtesting infrastructure for a live, ungated trading strategy under active development.
+
+---
+
 ## Technical Focus Areas
 
 ### AI / LLM
@@ -358,6 +381,7 @@ Worked as a backend engineer on Voxum, an online trading automation startup app 
 * fallback logic
 * rationale extraction
 * AI workflow automation
+* AI coding agent direction (Claude Code) and agent guardrail design
 
 ### Backend / APIs
 
@@ -396,6 +420,13 @@ Worked as a backend engineer on Voxum, an online trading automation startup app 
 * strategy configuration logic
 * TP/SL research workflows
 * deterministic backtesting
+* tick- and bar-level futures replay/backtesting infrastructure
+
+### Project & Delivery
+
+* task scoping and definition-of-done writing for another developer
+* review gates distinguishing "passing tests" from "verified correct"
+* AI agent supervision and guardrail design (spend limits, write-scope limits, stop-and-report clauses)
 
 ---
-
+</document>

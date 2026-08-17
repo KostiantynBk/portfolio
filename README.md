@@ -260,6 +260,70 @@ This project demonstrates end-to-end RAG engineering: chunking strategy comparis
 
 ---
 
+5. AI Support Ticket Triage Workflow
+**Tech stack:** n8n, OpenAI API, Structured Output Parser, Google Sheets, Slack, Webhook/Form triggers
+
+AI Support Ticket Triage Workflow is a low-code AI automation pipeline built in n8n that classifies incoming support tickets, drafts context-aware replies, and routes them for automatic logging or human approval based on priority and confidence.
+
+The system is designed to simulate a real customer-support intake process, where an AI agent handles first-pass triage and drafting while urgent or low-confidence tickets are escalated to a human before any reply goes out.
+
+**Main features:**
+
+* Accepts ticket submissions via a form (or webhook, for real ticketing-system integration such as Zendesk/Intercom).
+* Uses an LLM classification chain with a Structured Output Parser to guarantee valid, typed JSON — including automatic re-prompting on malformed model output.
+* Produces structured fields: category, priority, sentiment, one-line summary, suggested reply, and confidence score.
+* Conditional routing (Switch node) sends high-priority or negative-sentiment tickets down an escalation path, distinct from routine tickets.
+* Human-in-the-loop approval gate via Slack ("Send and Wait for Response") — an agent reviews and approves or rejects the AI-drafted reply before anything reaches the customer.
+* Logs every processed ticket — classification, draft reply, and outcome — to Google Sheets for auditability.
+* Dedicated error-handling workflow: failed LLM calls or malformed input are caught and routed to a fallback path instead of failing silently.
+* Input validation step rejects or flags empty/malformed submissions before they reach the model.
+
+**Why it matters:**
+
+This project demonstrates practical AI-to-business-system orchestration: webhook/API integration, structured LLM output validation, conditional routing logic, human-in-the-loop review gates, and production-style error handling — built in a low-code platform (n8n) that mirrors how AI gets integrated into existing business tooling in real companies, rather than built from scratch.
+
+---
+
+6. Observable AI Content Pipeline
+**Tech stack:** n8n, OpenAI API, Langfuse (LLM observability), Structured Output Parser, Google Sheets
+
+Observable AI Content Pipeline is an n8n workflow that generates business content (e.g. support-article drafts or outreach copy) through an LLM step instrumented end-to-end with observability — every run is traced, timed, costed, and compared against alternate prompt variants.
+
+The project is designed to show how an AI workflow is monitored and iterated on once it's in production, not just how it's built.
+
+Main features:
+
+LLM generation step wrapped with Langfuse tracing, capturing the full input/output, token usage, latency, and per-run cost.
+Structured Output Parser enforces a consistent schema on generated content, with automatic re-prompting on invalid output.
+A/B branch that runs two prompt variants against the same input and logs both outputs side by side for comparison.
+Cost and latency metrics logged per run to Google Sheets, enabling a simple dashboard view of drift or regressions over time.
+Scheduled evaluation sub-workflow that re-runs a fixed set of test inputs periodically and flags outputs that fall below a quality threshold.
+Error handling routes failed generations or trace-logging failures to a fallback path rather than dropping data silently.
+
+Why it matters:
+
+This project demonstrates LLM observability and evaluation discipline in a low-code environment — tracing, cost/latency monitoring, and prompt A/B testing — the production-monitoring layer that most AI automation builds skip entirely, and a skill set explicitly requested across current AI-automation job listings.
+
+7. Multi-Agent Research Desk (n8n)
+**Tech stack:** n8n, OpenAI API, AI Agent nodes, Execute Workflow sub-workflows, HTTP Request / Code nodes
+
+Multi-Agent Research Desk is an n8n workflow implementing a supervisor/router pattern: a coordinating agent decomposes an incoming query, dispatches it to specialized sub-agents built as reusable sub-workflows, and merges their outputs into a single structured brief.
+
+The project is designed to show agent orchestration and tool-use as a visual, inspectable system rather than a single monolithic prompt.
+
+**Main features:**
+
+* Supervisor agent (n8n AI Agent node) receives a query and decides which specialized sub-agent(s) to invoke.
+* Dedicated sub-workflows, each triggered via "Execute Workflow," act as specialized agents: a web-research agent, a data/calculation agent, and a summarizer agent.
+* Cost-aware routing: simple queries are handled by a cheaper model; the supervisor escalates to a stronger model only on low-confidence outputs.
+* Conflict handling when sub-agents return contradictory information — the supervisor flags disagreement rather than silently picking one answer.
+* Retry logic on individual sub-agent failures before the whole run is marked failed.
+* Final structured output (via Output Parser) merges sub-agent results into a single report with per-section sourcing.
+
+Why it matters:
+
+This project demonstrates multi-agent system design and orchestration — task decomposition, tool-calling, sub-workflow reuse, cost-aware model routing, and failure handling across agents — implemented visually in n8n, complementing the code-based multi-agent system in project #1 by showing the same architectural pattern built with low-code orchestration tooling.
+
 ## Professional Experience
 
 ### Backend Engineer — Voxum

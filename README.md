@@ -15,7 +15,7 @@ scikit-learn, Parquet, S3
 **Agents & RAG:** OpenAI Responses API, n8n, MCP, Vapi.ai, LangChain,
 Chroma, Sentence-Transformers
 
-**Delivery:** Docker, Kubernetes, Prometheus, Grafana, systemd, Ubuntu
+**Delivery:** Docker, Kubernetes, GitHub Actions, CircleCI, Prometheus, Grafana, systemd, Ubuntu
 
 Client work (not in these repos): FIX / WebSocket ingest, Redis Streams,
 TimescaleDB, Postgres, Parquet/S3, DuckDB/Polars, Docker/K8s, Prometheus/Grafana.

@@ -1,21 +1,27 @@
 # Kostiantyn Bakulin — AI & Backend Projects Portfolio
 
-Junior Backend / AI Automation Developer focused on Python, AI agents, external API integrations, structured LLM outputs, SQLite persistence, workflow automation, market-data processing, and VPS-based monitoring.
+AI engineer and technical lead. Python backends, multi-agent systems, voice
+agents, RAG, and automation. Commercial work on trading platforms and
+multi-agent products; repos below are selected systems you can run.
 
-This portfolio contains selected projects that demonstrate practical experience with:
+## Skills
 
-* Python backend logic
-* OpenAI API / OpenAI Responses API
-* structured outputs
-* SQLite and local persistence
-* external API integrations
-* Playwright browser automation
-* email and workflow automation
-* trading research workflows
-* CLI tools and terminal-based agents
-* systemd / Ubuntu VPS deployment
-* RAG pipelines and vector search
-* retrieval evaluation and LLM-as-judge
+**Backend & data:** Python, FastAPI, Pydantic, asyncio, Redis, PostgreSQL,
+TimescaleDB, SQLite, DuckDB, Polars
+
+**Trading & research:** WebSocket, FIX, NumPy, SciPy, statsmodels,
+scikit-learn, Parquet, S3
+
+**Agents & RAG:** OpenAI Responses API, n8n, MCP, Vapi.ai, LangChain,
+Chroma, Sentence-Transformers
+
+**Delivery:** Docker, Kubernetes, Prometheus, Grafana, systemd, Ubuntu
+
+Client work (not in these repos): FIX / WebSocket ingest, Redis Streams,
+TimescaleDB, Postgres, Parquet/S3, DuckDB/Polars, Docker/K8s, Prometheus/Grafana.
+
+These repos: FastAPI, Pydantic, OpenAI, SQLite, n8n, RAG/Chroma/LangChain,
+Vapi, systemd/Ubuntu, trading-research CLIs.
 
 ---
 

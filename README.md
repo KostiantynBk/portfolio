@@ -32,6 +32,7 @@ Vapi, systemd/Ubuntu, trading-research CLIs.
 **Repository:** https://github.com/KostiantynBk/ruleproof  
 **Live demo:** https://ruleproof.vercel.app  
 **Submission & demo video:** https://lablab.ai/ai-hackathons/ibm-bob-2-hackathon/zenin/ruleproof-tested-rules-for-ai-coding-agents  
+**Certificate:** https://lablab.ai/u/@Zenin/ai-hackathons/ibm-bob-2-hackathon/certificate
 **Tech stack:** IBM Bob IDE, Bob Shell (headless), Bob custom modes and subagents, Node.js, GitHub REST API, static dashboard on Vercel
 
 Solo entry built in 48 hours. Teams write rule files (AGENTS.md, `.bob/rules`) for AI coding agents by hand or generate them with `/init`, but nobody measures which rules actually change the agent's behaviour, and every rule costs tokens on every task. RuleProof turns a team's review history into rules that are proven to help.

@@ -373,12 +373,24 @@ This project demonstrates multi-agent system design and orchestration — task d
 
 ### Backend Engineer — Voxum
 
-**App Store:** https://apps.apple.com/nl/app/voxum-app/id6759362982  
-**Role:** Backend Engineer  
-**Period:** 09/2024 – 02/2026  
+**App Store:** https://apps.apple.com/nl/app/voxum-app/id6759362982
+**Role:** Backend Engineer
+**Period:** 09/2024 – 02/2026
 **Type:** Remote, NDA-protected codebase
 
-Worked as a backend engineer on Voxum, an online trading automation startup app focused on automated crypto trading strategy signals.
+Backend engineer on Voxum, a trading-automation app for strategy signals: users build strategies from zones, filters, entry rules, stop-loss, and take-profit, and the backend turns those configs into market-data and signal workflows.
+
+**Stack:** Python, FastAPI, Pydantic, asyncio, WebSocket, FIX, Bybit API, Redis (cache, Streams), PostgreSQL, TimescaleDB, Parquet, S3, DuckDB, Polars, Docker, Kubernetes, GitHub Actions, CircleCI, Prometheus, Grafana
+
+**High-level responsibilities:**
+
+* Built FastAPI services for strategy automation: live market ingest, signal workflows, and order/journal persistence.
+* Ingested market data over WebSocket, FIX, and the Bybit API with asyncio; published events on Redis Streams and cached hot state in Redis.
+* Stored ticks/bars in TimescaleDB and orders in Postgres; kept research datasets as Parquet on S3 and queried them with DuckDB/Polars.
+* Worked on the strategy-builder path: user-defined tools, entry conditions, validation rules, stop-loss, and take-profit mapped into structured backend workflows and strategy-based signals.
+* Packaged services with Docker, deployed on Kubernetes, and ran CI on GitHub Actions and CircleCI.
+* Added Prometheus/Grafana dashboards and alerts for ingest lag and service health.
+* Worked under an NDA; private codebase and internal implementation details cannot be shared.
 
 **High-level responsibilities:**
 

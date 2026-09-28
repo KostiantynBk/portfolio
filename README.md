@@ -9,16 +9,17 @@ multi-agent products; repos below are selected systems you can run.
 **Backend & data:** Python, FastAPI, Pydantic, asyncio, Redis, PostgreSQL,
 TimescaleDB, SQLite, DuckDB, Polars
 
-**Trading & research:** WebSocket, FIX, NumPy, SciPy, statsmodels,
-scikit-learn, Parquet, S3
+**Trading & research:** WebSocket, FIX, NumPy, pandas, SciPy, statsmodels,
+scikit-learn, PyTorch, MATLAB, Jupyter, Parquet, S3
 
 **Agents & RAG:** OpenAI Responses API, n8n, MCP, Vapi.ai, LangChain,
 Chroma, Sentence-Transformers, IBM Bob (IDE, Shell, custom modes, subagents)
 
 **Delivery:** Docker, Kubernetes, GitHub Actions, CircleCI, Prometheus, Grafana, systemd, Ubuntu
 
-Client work (not in these repos): FIX / WebSocket ingest, Redis Streams,
-TimescaleDB, Postgres, Parquet/S3, DuckDB/Polars, Docker/K8s, Prometheus/Grafana.
+Client work (not in these repos): FIX / WebSocket ingest, Kafka, Aeron
+(low-latency order messaging), Redis Streams, TimescaleDB, Postgres,
+Spark, Parquet/S3, DuckDB/Polars, Docker/K8s, Prometheus/Grafana.
 
 These repos: FastAPI, Pydantic, OpenAI, SQLite, n8n, RAG/Chroma/LangChain,
 Vapi, systemd/Ubuntu, trading-research CLIs.
@@ -390,26 +391,48 @@ Worked as a backend engineer on Voxum, an online trading automation startup app 
 
 ---
 
-### Backend Engineer / Automation Lead — Mediaverse Pte. Ltd.
+### AI Systems Developer — Mediaverse Pte. Ltd.
 
-**Role:** Backend Engineer, transitioning into technical project management  
-**Period:** 04/2026 – Present  
+**Role:** AI Systems Developer  
+**Period:** 03/2026 – 05/2026  
 **Type:** Remote contractor, NDA-protected codebase and strategy content
 
-Working on a private algorithmic trading automation system, building backtesting and replay infrastructure for futures market-microstructure strategies, and progressively taking on technical project management: scoping and reviewing a second developer's work, and directing AI coding agents end-to-end.
+Built Python services and agent workflows for a private algorithmic trading automation system, wiring LLM tools to market and application data, and translating desk requirements into backend components, ingest pipelines, and agent hand-offs.
 
 **High-level responsibilities:**
 
-* Built tick- and bar-level replay/backtesting infrastructure for futures market data, including versioned result storage and comparison harnesses across strategy variants.
-* Designed data pipelines separating measured findings from unverified/placeholder parameters, keeping strategy specification traceable to the domain expert who owns it.
-* Transitioned from individual contributor to supervising a second developer: writing scoped task specs, reviewing deliverables, and defining explicit boundaries between "build the mechanism" and "decide the strategy."
-* Directed AI coding agents (Claude Code CLI) and a VPS-based autonomous agent for build, test, and infrastructure workflows, with explicit guardrails around what agents may write, execute, or spend.
-* Operated under a "verified vs. claimed" discipline: treated passing tests and agent self-reports as claims requiring independent confirmation, not as evidence of correctness on their own.
+* Built Python services and agent workflows for a multi-agent trading platform, wiring LLM tools to market/application data and automation steps.
+* Translated desk requirements into backend components and specs for ingest (Kafka, Aeron for low-latency order messaging), research (Spark, Parquet), and agent hand-offs.
+* Implemented statistical and ML utilities with NumPy, pandas, SciPy, statsmodels, scikit-learn, and PyTorch for residualization, regressions, and time-series checks, prototyping in Jupyter and MATLAB before productionizing.
+* Worked spec-to-PR with Codex, Claude Code, and Cursor, using Perplexity for research against written contracts.
 * Worked under an NDA; strategy logic, parameters, and internal implementation details cannot be shared.
 
 **Why it matters:**
 
-This role demonstrates the shift from writing backend/automation code to owning delivery: task decomposition for another developer, agent-orchestration discipline (including deliberately constraining agent authority over authoritative documents and spend), and backtesting infrastructure for a live, ungated trading strategy under active development.
+This role covers the hands-on build phase at Mediaverse — wiring agent tools to real market data and shipping backend components against desk requirements — before transitioning into architecture and delivery ownership.
+
+---
+
+### Technical Project Manager / Solutions Architect — Mediaverse Pte. Ltd.
+
+**Role:** Technical Project Manager / Solutions Architect (transitioned from AI Systems Developer)  
+**Period:** 05/2026 – Present  
+**Type:** Remote contractor, NDA-protected codebase and strategy content
+
+Own specification and architecture for a private algorithmic trading system spanning a live deterministic strategy track and a general-purpose backtesting/execution platform, translating a domain expert's informally-validated strategy logic into implementable, traceable specs.
+
+**High-level responsibilities:**
+
+* Own specification and architecture for a private algorithmic trading system spanning a live deterministic strategy track and a general-purpose backtesting/execution platform; translate a domain expert's informally-validated strategy logic into implementable, traceable specs.
+* Architected the platform's data and execution stack: Kafka for event streaming, Aeron for low-latency order messaging, Redis for hot-state caching, Postgres for order persistence, Docker/Kubernetes for deployment, and Spark/Parquet/pandas for research.
+* Built tick- and bar-level replay/backtesting infrastructure for futures market data, including versioned result storage and comparison harnesses across strategy variants.
+* Supervise a second developer end-to-end: writing scoped task specs, reviewing deliverables, and independently validating reported defects rather than taking them at face value.
+* Direct AI coding agents (Claude Code CLI) and a VPS-based autonomous agent for build, test, research, and infrastructure work, under explicit written constraints on what each may write, execute, spend, or access; treat agent output as unverified until independently confirmed.
+* Worked under an NDA; strategy logic, parameters, and internal implementation details cannot be shared.
+
+**Why it matters:**
+
+This role demonstrates the shift from writing backend/automation code to owning delivery: architecture and stack ownership, task decomposition for another developer, agent-orchestration discipline (including deliberately constraining agent authority over authoritative documents and spend), and backtesting infrastructure for a live, ungated trading strategy under active development.
 
 ---
 

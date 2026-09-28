@@ -15,11 +15,12 @@ scikit-learn, PyTorch, MATLAB, Jupyter, Parquet, S3
 **Agents & RAG:** OpenAI Responses API, n8n, MCP, Vapi.ai, LangChain,
 Chroma, Sentence-Transformers, IBM Bob (IDE, Shell, custom modes, subagents)
 
-**Delivery:** Docker, Kubernetes, GitHub Actions, CircleCI, Prometheus, Grafana, systemd, Ubuntu
+**Delivery:** Docker, Kubernetes, Terraform, AWS (EC2), Azure, GitHub Actions, CircleCI, Prometheus, Grafana, systemd, Ubuntu
 
 Client work (not in these repos): FIX / WebSocket ingest, Kafka, Aeron
 (low-latency order messaging), Redis Streams, TimescaleDB, Postgres,
-Spark, Parquet/S3, DuckDB/Polars, Docker/K8s, Prometheus/Grafana.
+Spark, Parquet/S3, DuckDB/Polars, Docker/K8s, Terraform, AWS EC2, Azure,
+Prometheus/Grafana.
 
 These repos: FastAPI, Pydantic, OpenAI, SQLite, n8n, RAG/Chroma/LangChain,
 Vapi, systemd/Ubuntu, trading-research CLIs.
@@ -382,7 +383,7 @@ This project demonstrates multi-agent system design and orchestration — task d
 
 Backend engineer on Voxum, a trading-automation app for strategy signals: users build strategies from zones, filters, entry rules, stop-loss, and take-profit, and the backend turns those configs into market-data and signal workflows.
 
-**Stack:** Python, FastAPI, Pydantic, asyncio, WebSocket, FIX, Bybit API, Redis (cache, Streams), PostgreSQL, TimescaleDB, Parquet, S3, DuckDB, Polars, Docker, Kubernetes, GitHub Actions, CircleCI, Prometheus, Grafana
+**Stack:** Python, FastAPI, Pydantic, asyncio, WebSocket, FIX, Bybit API, Redis (cache, Streams), PostgreSQL, TimescaleDB, Parquet, S3, DuckDB, Polars, Docker, Kubernetes, Terraform, AWS EC2, Azure, GitHub Actions, CircleCI, Prometheus, Grafana
 
 **High-level responsibilities:**
 
@@ -390,7 +391,7 @@ Backend engineer on Voxum, a trading-automation app for strategy signals: users 
 * Ingested market data over WebSocket, FIX, and the Bybit API with asyncio; published events on Redis Streams and cached hot state in Redis.
 * Stored ticks/bars in TimescaleDB and orders in Postgres; kept research datasets as Parquet on S3 and queried them with DuckDB/Polars.
 * Worked on the strategy-builder path: user-defined tools, entry conditions, validation rules, stop-loss, and take-profit mapped into structured backend workflows and strategy-based signals.
-* Packaged services with Docker, deployed on Kubernetes, and ran CI on GitHub Actions and CircleCI.
+* Packaged services with Docker, deployed on Kubernetes across AWS EC2 and Azure, managed and scaled with Terraform, and ran CI on GitHub Actions and CircleCI.
 * Added Prometheus/Grafana dashboards and alerts for ingest lag and service health.
 * Worked under an NDA; private codebase and internal implementation details cannot be shared.
 
@@ -429,7 +430,7 @@ Own specification and architecture for a private algorithmic trading system span
 **High-level responsibilities:**
 
 * Own specification and architecture for a private algorithmic trading system spanning a live deterministic strategy track and a general-purpose backtesting/execution platform; translate a domain expert's informally-validated strategy logic into implementable, traceable specs.
-* Architected the platform's data and execution stack: Kafka for event streaming, Aeron for low-latency order messaging, Redis for hot-state caching, Postgres for order persistence, Docker/Kubernetes for deployment, and Spark/Parquet/pandas for research.
+* Architected the platform's data and execution stack: Kafka for event streaming, Aeron for low-latency order messaging, Redis for hot-state caching, Postgres for order persistence, Docker/Kubernetes for deployment, and Spark/Parquet/pandas for research; infrastructure managed and scaled with Terraform across AWS EC2 and Azure.
 * Built tick- and bar-level replay/backtesting infrastructure for futures market data, including versioned result storage and comparison harnesses across strategy variants.
 * Supervise a second developer end-to-end: writing scoped task specs, reviewing deliverables, and independently validating reported defects rather than taking them at face value.
 * Direct AI coding agents (Claude Code CLI) and a VPS-based autonomous agent for build, test, research, and infrastructure work, under explicit written constraints on what each may write, execute, spend, or access; treat agent output as unverified until independently confirmed.

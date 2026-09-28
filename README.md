@@ -13,7 +13,7 @@ TimescaleDB, SQLite, DuckDB, Polars
 scikit-learn, Parquet, S3
 
 **Agents & RAG:** OpenAI Responses API, n8n, MCP, Vapi.ai, LangChain,
-Chroma, Sentence-Transformers
+Chroma, Sentence-Transformers, IBM Bob (IDE, Shell, custom modes, subagents)
 
 **Delivery:** Docker, Kubernetes, GitHub Actions, CircleCI, Prometheus, Grafana, systemd, Ubuntu
 
@@ -25,11 +25,41 @@ Vapi, systemd/Ubuntu, trading-research CLIs.
 
 ---
 
+## Hackathons
+
+### RuleProof — Tested Rules for AI Coding Agents (IBM Bob 2.0 Hackathon, lablab.ai, Sep 2026)
+
+**Repository:** https://github.com/KostiantynBk/ruleproof  
+**Live demo:** https://ruleproof.vercel.app  
+**Submission & demo video:** https://lablab.ai/ai-hackathons/ibm-bob-2-hackathon/zenin/ruleproof-tested-rules-for-ai-coding-agents  
+**Tech stack:** IBM Bob IDE, Bob Shell (headless), Bob custom modes and subagents, Node.js, GitHub REST API, static dashboard on Vercel
+
+Solo entry built in 48 hours. Teams write rule files (AGENTS.md, `.bob/rules`) for AI coding agents by hand or generate them with `/init`, but nobody measures which rules actually change the agent's behaviour, and every rule costs tokens on every task. RuleProof turns a team's review history into rules that are proven to help.
+
+**How it works:**
+
+* **Mine.** A custom Bob IDE mode (`rule-miner`) runs parallel subagents over review comments, git history, and CI logs, and proposes a rule only for mistakes raised in at least two places, each backed by exact quotes.
+* **Verify.** A deterministic checker rejects any rule whose quoted evidence does not appear verbatim in the sources.
+* **Test.** For each rule, Bob Shell performs the same coding task headlessly on throwaway copies of the repository, with and without the rule, and a behavioural check scores every result.
+* **Ship.** Only rules that measurably raise the pass rate are kept and exported for `.bob/rules/`; rules Bob already follows are flagged as redundant. A public dashboard shows each rule's evidence, pass rates, and Bob's code with and without it.
+
+**Results:**
+
+* 45-run head-to-head across five tasks: Bob with no rules passed 20%, with Bob's own `/init` output 33%, with RuleProof's three rules 100% (95% CIs 7–45%, 15–58%, 80–100%), using a rule file seven times smaller and about 30% cheaper per run.
+* On 727 anonymized review comments from three open-source libraries (ky, Express, Fastify), RuleProof mined 23 rules enforced in at least two pull requests (80 of 81 quotes verified). Bob's `/init` for the same repositories wrote 18 KB of rules and fully captured only one of them.
+* Built with Bob IDE on a 40-coin event budget (~33 used): 20 documented IDE tasks plus 75 headless Bob Shell A/B runs.
+
+**Why it matters:**
+
+This project demonstrates agent evaluation discipline: treating agent instructions as hypotheses, A/B-testing them against a behavioural check, reporting confidence intervals, and comparing against the vendor's own baseline — plus agent orchestration (custom modes, parallel subagents, headless runs) and evidence verification against hallucinated quotes.
+
+---
+
 ## Featured Projects
 
 ### 1. Automated Research Multi-Agent System
 
-**Repository:** https://github.com/KostiantynBk/automatedResearch
+**Repository:** https://github.com/KostiantynBk/automatedResearch  
 **Tech stack:** Python, OpenAI API, Structured Outputs, Pydantic, FastAPI, SQLite, argparse
 
 Automated Research Multi-Agent System is a Python backend prototype that researches a user-provided topic and generates a structured report through a sequential pipeline of specialized AI agents.
@@ -56,7 +86,7 @@ This project demonstrates practical multi-agent orchestration, role-based AI sys
 
 ### 2. Terminal AI Trading Research Agent
 
-**Repository:** https://github.com/KostiantynBk/terminalTradingAgent
+**Repository:** https://github.com/KostiantynBk/terminalTradingAgent  
 **Tech stack:** Python, OpenAI Responses API, SQLite, Pydantic, Binance Public Market Data API, CLI, systemd, Ubuntu VPS
 
 Terminal AI Trading Research Agent is a terminal-based AI trading research tool that fetches crypto OHLCV market data, reads local strategy rules, stores memory in SQLite, and produces structured long, short, watch, or no-trade research decisions.
@@ -83,7 +113,7 @@ This project demonstrates terminal-based AI agent development, local memory mana
 
 ### 3. X Market Signal Monitor
 
-**Repository:** https://github.com/KostiantynBk/copyTrading
+**Repository:** https://github.com/KostiantynBk/copyTrading  
 **Tech stack:** Python, Playwright, OpenAI Responses API, Pydantic, systemd, Ubuntu VPS
 
 X Market Signal Monitor is an AI-powered market monitoring system that watches selected X profiles and detects posts containing trading-related views, position updates, or market commentary.
@@ -109,8 +139,8 @@ This project demonstrates browser automation, AI-based signal extraction, local 
 
 ### 4. AI Email Triage & Reply Automation Agent
 
-**Repository:** https://github.com/KostiantynBk/emailReply
-**Demo:** https://youtu.be/gN160zCNbAA
+**Repository:** https://github.com/KostiantynBk/emailReply  
+**Demo:** https://youtu.be/gN160zCNbAA  
 **Tech stack:** Python, OpenAI API, email integration, database logging, Google Sheets / Telegram integration
 
 AI Email Triage & Reply Automation Agent is an AI workflow tool that classifies incoming emails, extracts important information, generates context-aware draft replies, and logs processing results.
@@ -128,14 +158,16 @@ The project is designed to simulate a business email workflow where routine mess
 * Stores processed emails, generated replies, statuses, and error logs.
 * Supports external workflow integrations such as Google Sheets and Telegram notifications.
 
+**Why it matters:**
+
 This project demonstrates practical AI workflow automation, structured LLM outputs, fallback logic, database-backed tracking, and real business process automation.
 
 ---
 
 ### 5. Application Process Agent
 
-**Repository:** https://github.com/KostiantynBk/jobAnalysis
-**Demo:** https://youtu.be/-2XxQz76ZGk
+**Repository:** https://github.com/KostiantynBk/jobAnalysis  
+**Demo:** https://youtu.be/-2XxQz76ZGk  
 **Tech stack:** Python, OpenAI Responses API, SQLite, JavaScript
 
 Application Process Agent is an AI-powered job application assistant that analyzes job descriptions and compares them against a predefined resume profile.
@@ -165,7 +197,7 @@ This project demonstrates AI-assisted workflow automation, structured outputs, m
 
 ### 6. Lead Processing MVP
 
-**Repository:** https://github.com/KostiantynBk/jobTask
+**Repository:** https://github.com/KostiantynBk/jobTask  
 **Tech stack:** Python, FastAPI, OpenAI API, SQLite, Telegram Bot API, Pydantic
 
 Lead Processing MVP is a small backend prototype for processing landing-page lead submissions after a form is sent.
@@ -191,7 +223,7 @@ This project demonstrates a pragmatic MVP backend workflow: API input handling, 
 
 ### 7. MEDICA Business Analytics Dashboard
 
-**Repository:** https://github.com/KostiantynBk/MEDICABusinessAnalyticsDashboard
+**Repository:** https://github.com/KostiantynBk/MEDICABusinessAnalyticsDashboard  
 **Tech stack:** Python, pandas, SQLite, SQL, Streamlit, Plotly, OpenAI API
 
 MEDICA Business Analytics Dashboard is a simulated end-to-end business analytics system for a scaling medical/e-commerce company. The project combines sales, CRM, marketing, payment, refund, and customer-service data into a unified SQLite analytics layer, calculates key business KPIs, visualizes them in an interactive Streamlit dashboard, and generates automated business reports.
@@ -216,7 +248,7 @@ This project demonstrates practical business intelligence work: data generation,
 
 ### 8. Law Firm Voice Intake Agent
 
-**Repository:** https://github.com/KostiantynBk/lawFirmVoiceIntakeAgent
+**Repository:** https://github.com/KostiantynBk/VoiceIntakeAgent  
 **Tech stack:** Python, FastAPI, Vapi.ai, OpenAI API (gpt-4o), Pydantic, SQLite, vanilla JS
 
 Law Firm Voice Intake Agent is a Python backend that integrates with Vapi.ai to handle inbound phone calls for a personal injury law firm. An AI agent named Alex guides callers through a structured 9-stage intake flow, automatically qualifies or disqualifies them, and logs structured lead data for attorney review.
@@ -243,7 +275,7 @@ This project demonstrates voice AI integration, multi-stage conversation orchest
 
 ### 9. DocsRAG — Retrieval-Augmented Documentation Assistant
 
-**Repository:** https://github.com/KostiantynBk/ragAssistant 
+**Repository:** https://github.com/KostiantynBk/ragAssistant  
 **Tech stack:** Python, OpenAI API, Chroma, Sentence-Transformers, LangChain, FastAPI, Pydantic, SQLite
 
 DocsRAG is a production-style RAG pipeline that answers questions over a technical-docs corpus (LangChain docs) with cited, schema-validated responses. The project benchmarks two chunking strategies and two retrieval configurations, measuring quality with a purpose-built evaluation harness and an LLM-as-judge faithfulness check.
@@ -266,7 +298,8 @@ This project demonstrates end-to-end RAG engineering: chunking strategy comparis
 
 ---
 
-5. AI Support Ticket Triage Workflow
+### 10. AI Support Ticket Triage Workflow
+
 **Tech stack:** n8n, OpenAI API, Structured Output Parser, Google Sheets, Slack, Webhook/Form triggers
 
 AI Support Ticket Triage Workflow is a low-code AI automation pipeline built in n8n that classifies incoming support tickets, drafts context-aware replies, and routes them for automatic logging or human approval based on priority and confidence.
@@ -290,27 +323,31 @@ This project demonstrates practical AI-to-business-system orchestration: webhook
 
 ---
 
-6. Observable AI Content Pipeline
+### 11. Observable AI Content Pipeline
+
 **Tech stack:** n8n, OpenAI API, Langfuse (LLM observability), Structured Output Parser, Google Sheets
 
 Observable AI Content Pipeline is an n8n workflow that generates business content (e.g. support-article drafts or outreach copy) through an LLM step instrumented end-to-end with observability — every run is traced, timed, costed, and compared against alternate prompt variants.
 
 The project is designed to show how an AI workflow is monitored and iterated on once it's in production, not just how it's built.
 
-Main features:
+**Main features:**
 
-LLM generation step wrapped with Langfuse tracing, capturing the full input/output, token usage, latency, and per-run cost.
-Structured Output Parser enforces a consistent schema on generated content, with automatic re-prompting on invalid output.
-A/B branch that runs two prompt variants against the same input and logs both outputs side by side for comparison.
-Cost and latency metrics logged per run to Google Sheets, enabling a simple dashboard view of drift or regressions over time.
-Scheduled evaluation sub-workflow that re-runs a fixed set of test inputs periodically and flags outputs that fall below a quality threshold.
-Error handling routes failed generations or trace-logging failures to a fallback path rather than dropping data silently.
+* LLM generation step wrapped with Langfuse tracing, capturing the full input/output, token usage, latency, and per-run cost.
+* Structured Output Parser enforces a consistent schema on generated content, with automatic re-prompting on invalid output.
+* A/B branch that runs two prompt variants against the same input and logs both outputs side by side for comparison.
+* Cost and latency metrics logged per run to Google Sheets, enabling a simple dashboard view of drift or regressions over time.
+* Scheduled evaluation sub-workflow that re-runs a fixed set of test inputs periodically and flags outputs that fall below a quality threshold.
+* Error handling routes failed generations or trace-logging failures to a fallback path rather than dropping data silently.
 
-Why it matters:
+**Why it matters:**
 
 This project demonstrates LLM observability and evaluation discipline in a low-code environment — tracing, cost/latency monitoring, and prompt A/B testing — the production-monitoring layer that most AI automation builds skip entirely, and a skill set explicitly requested across current AI-automation job listings.
 
-7. Multi-Agent Research Desk (n8n)
+---
+
+### 12. Multi-Agent Research Desk (n8n)
+
 **Tech stack:** n8n, OpenAI API, AI Agent nodes, Execute Workflow sub-workflows, HTTP Request / Code nodes
 
 Multi-Agent Research Desk is an n8n workflow implementing a supervisor/router pattern: a coordinating agent decomposes an incoming query, dispatches it to specialized sub-agents built as reusable sub-workflows, and merges their outputs into a single structured brief.
@@ -326,17 +363,19 @@ The project is designed to show agent orchestration and tool-use as a visual, in
 * Retry logic on individual sub-agent failures before the whole run is marked failed.
 * Final structured output (via Output Parser) merges sub-agent results into a single report with per-section sourcing.
 
-Why it matters:
+**Why it matters:**
 
 This project demonstrates multi-agent system design and orchestration — task decomposition, tool-calling, sub-workflow reuse, cost-aware model routing, and failure handling across agents — implemented visually in n8n, complementing the code-based multi-agent system in project #1 by showing the same architectural pattern built with low-code orchestration tooling.
+
+---
 
 ## Professional Experience
 
 ### Backend Engineer — Voxum
 
-**App Store:** https://apps.apple.com/nl/app/voxum-app/id6759362982
-**Role:** Backend Engineer
-**Period:** 09/2024 – 02/2026
+**App Store:** https://apps.apple.com/nl/app/voxum-app/id6759362982  
+**Role:** Backend Engineer  
+**Period:** 09/2024 – 02/2026  
 **Type:** Remote, NDA-protected codebase
 
 Worked as a backend engineer on Voxum, an online trading automation startup app focused on automated crypto trading strategy signals.
@@ -353,8 +392,8 @@ Worked as a backend engineer on Voxum, an online trading automation startup app 
 
 ### Backend Engineer / Automation Lead — Mediaverse Pte. Ltd.
 
-**Role:** Backend Engineer, transitioning into technical project management
-**Period:** 04/2026 – Present
+**Role:** Backend Engineer, transitioning into technical project management  
+**Period:** 04/2026 – Present  
 **Type:** Remote contractor, NDA-protected codebase and strategy content
 
 Working on a private algorithmic trading automation system, building backtesting and replay infrastructure for futures market-microstructure strategies, and progressively taking on technical project management: scoping and reviewing a second developer's work, and directing AI coding agents end-to-end.

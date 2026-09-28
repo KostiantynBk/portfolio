@@ -394,14 +394,6 @@ Backend engineer on Voxum, a trading-automation app for strategy signals: users 
 * Added Prometheus/Grafana dashboards and alerts for ingest lag and service health.
 * Worked under an NDA; private codebase and internal implementation details cannot be shared.
 
-**High-level responsibilities:**
-
-* Integrated external crypto market data from the Bybit API into backend workflows.
-* Contributed to backend logic for processing market data and generating strategy-based trading signals.
-* Worked on a strategy-builder system where users could create custom trading strategies by combining predefined tools, entry conditions, validation rules, stop-loss, and take-profit parameters.
-* Supported business logic for transforming user-defined strategy configurations into structured backend workflows.
-* Worked under an NDA; private codebase and internal implementation details cannot be shared.
-
 ---
 
 ### AI Systems Developer — Mediaverse Pte. Ltd.

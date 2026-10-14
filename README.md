@@ -35,7 +35,7 @@ Vapi, systemd/Ubuntu, trading-research CLIs.
 **Live demo:** https://ruleproof.vercel.app  
 **Submission & demo video:** https://lablab.ai/ai-hackathons/ibm-bob-2-hackathon/zenin/ruleproof-tested-rules-for-ai-coding-agents  
 **Certificate:** https://lablab.ai/u/@Zenin/ai-hackathons/ibm-bob-2-hackathon/certificate
-**Tech stack:** IBM Bob IDE, Bob Shell (headless), Bob custom modes and subagents, Node.js, GitHub REST API, static dashboard on Vercel
+**Tech stack:** IBM Bob IDE, Bob Shell (headless), Bob custom modes and subagents, JavaScript, Node.js, GitHub REST API, static dashboard on Vercel
 
 Solo entry built in 48 hours. Teams write rule files (AGENTS.md, `.bob/rules`) for AI coding agents by hand or generate them with `/init`, but nobody measures which rules actually change the agent's behaviour, and every rule costs tokens on every task. RuleProof turns a team's review history into rules that are proven to help.
 
@@ -379,7 +379,7 @@ This project demonstrates multi-agent system design and orchestration — task d
 **App Store:** https://apps.apple.com/nl/app/voxum-app/id6759362982
 **Role:** Backend Engineer
 **Period:** 09/2024 – 02/2026
-**Type:** Remote, NDA-protected codebase
+**Type:** Hybrid, independent contractor, NDA-protected codebase
 
 Backend engineer on Voxum, a trading-automation app for strategy signals: users build strategies from zones, filters, entry rules, stop-loss, and take-profit, and the backend turns those configs into market-data and signal workflows.
 
@@ -393,6 +393,7 @@ Backend engineer on Voxum, a trading-automation app for strategy signals: users 
 * Worked on the strategy-builder path: user-defined tools, entry conditions, validation rules, stop-loss, and take-profit mapped into structured backend workflows and strategy-based signals.
 * Packaged services with Docker, deployed on Kubernetes across AWS EC2 and Azure, managed and scaled with Terraform, and ran CI on GitHub Actions and CircleCI.
 * Added Prometheus/Grafana dashboards and alerts for ingest lag and service health.
+* Collaborated with frontend engineers on the Expo-based mobile app and communicated directly with early users about bugs and requested features.
 * Worked under an NDA; private codebase and internal implementation details cannot be shared.
 
 ---
@@ -422,23 +423,42 @@ This role covers the hands-on build phase at Mediaverse — wiring agent tools t
 ### Technical Project Manager / Solutions Architect — Mediaverse Pte. Ltd.
 
 **Role:** Technical Project Manager / Solutions Architect (transitioned from AI Systems Developer)  
-**Period:** 05/2026 – Present  
+**Period:** 05/2026 – 10/2026<br>
 **Type:** Remote contractor, NDA-protected codebase and strategy content
 
-Own specification and architecture for a private algorithmic trading system spanning a live deterministic strategy track and a general-purpose backtesting/execution platform, translating a domain expert's informally-validated strategy logic into implementable, traceable specs.
+Owned specification and architecture for a private algorithmic trading system spanning a live deterministic strategy track and a general-purpose backtesting/execution platform, translating a domain expert's informally-validated strategy logic into implementable, traceable specs.
 
 **High-level responsibilities:**
 
-* Own specification and architecture for a private algorithmic trading system spanning a live deterministic strategy track and a general-purpose backtesting/execution platform; translate a domain expert's informally-validated strategy logic into implementable, traceable specs.
+* Owned specification and architecture for a private algorithmic trading system spanning a live deterministic strategy track and a general-purpose backtesting/execution platform; translated a domain expert's informally-validated strategy logic into implementable, traceable specs.
 * Architected the platform's data and execution stack: Kafka for event streaming, Aeron for low-latency order messaging, Redis for hot-state caching, Postgres for order persistence, Docker/Kubernetes for deployment, and Spark/Parquet/pandas for research; infrastructure managed and scaled with Terraform across AWS EC2 and Azure.
 * Built tick- and bar-level replay/backtesting infrastructure for futures market data, including versioned result storage and comparison harnesses across strategy variants.
-* Supervise a second developer end-to-end: writing scoped task specs, reviewing deliverables, and independently validating reported defects rather than taking them at face value.
-* Direct AI coding agents (Claude Code CLI) and a VPS-based autonomous agent for build, test, research, and infrastructure work, under explicit written constraints on what each may write, execute, spend, or access; treat agent output as unverified until independently confirmed.
+* Supervised a second developer end-to-end: writing scoped task specs, reviewing deliverables, and independently validating reported defects rather than taking them at face value.
+* Directed AI coding agents (Claude Code CLI) and a VPS-based autonomous agent for build, test, research, and infrastructure work, under explicit written constraints on what each may write, execute, spend, or access; treated agent output as unverified until independently confirmed.
 * Worked under an NDA; strategy logic, parameters, and internal implementation details cannot be shared.
 
 **Why it matters:**
 
 This role demonstrates the shift from writing backend/automation code to owning delivery: architecture and stack ownership, task decomposition for another developer, agent-orchestration discipline (including deliberately constraining agent authority over authoritative documents and spend), and backtesting infrastructure for a live, ungated trading strategy under active development.
+
+---
+
+## Production Reliability & User Feedback
+
+A high-level trading-platform incident example illustrates my troubleshooting approach; employer-specific configuration and confidential implementation details are omitted.
+
+* **Detection:** Monitoring alerted on live ingestion lag while cached state still appeared current and durable persistence fell behind.
+* **Investigation:** I compared messaging, database and Kubernetes telemetry and isolated a network-policy issue affecting persistence after a consumer pod was rescheduled.
+* **Correction:** I documented the change and validation criteria, corrected configuration through the existing Terraform change process, and rolled the affected deployment.
+* **Verification:** I independently checked sustained lag recovery, journal consistency and alert clearance using metrics and a read-only database query rather than accepting a verbal success report.
+* **Prevention:** I added a synthetic connectivity check to catch a recurrence earlier.
+
+At Voxum, I also communicated directly with early mobile-app users about bug reports and desired features. This was a practical user-feedback loop, not a claim of formal UAT sign-off or a dedicated QA role.
+
+## Personal Trading & Earlier Development
+
+* Personally traded NQ/ES futures for approximately 18 months and crypto for six months. This is personal market experience, separate from my commercial engineering roles; no profitability claim is implied.
+* Earlier independent development included C# game projects and HTML/CSS/basic JavaScript websites. Selected repositories: [airWeb](https://github.com/KostiantynBk/airWeb), [project_farmvest](https://github.com/KostiantynBk/project_farmvest), and [project_ecocabins](https://github.com/KostiantynBk/project_ecocabins). These are earlier projects, not commercial React or .NET experience.
 
 ---
 

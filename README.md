@@ -13,21 +13,53 @@ TimescaleDB, SQLite, DuckDB, Polars
 scikit-learn, PyTorch, MATLAB, Jupyter, Parquet, S3
 
 **Agents & RAG:** OpenAI Responses API, n8n, MCP, Vapi.ai, LangChain,
-Chroma, Sentence-Transformers, IBM Bob (IDE, Shell, custom modes, subagents)
+Chroma, Sentence-Transformers, IBM Bob (IDE, Shell, custom modes, subagents),
+Evolus (agents, knowledge libraries, AI Tools)
 
-**Delivery:** Docker, Kubernetes, Terraform, AWS (EC2), Azure, GitHub Actions, CircleCI, Prometheus, Grafana, systemd, Ubuntu
+**Open models:** Gemma 4 (vision + text), vLLM on AMD ROCm (Instinct MI300X), AMD Token Factory
+
+**Delivery:** Docker, Kubernetes, Terraform, AWS (EC2), Azure, Vercel, GitHub Actions, CircleCI, Prometheus, Grafana, systemd, Ubuntu
 
 Client work (not in these repos): FIX / WebSocket ingest, Kafka, Aeron
 (low-latency order messaging), Redis Streams, TimescaleDB, Postgres,
 Spark, Parquet/S3, DuckDB/Polars, Docker/K8s, Terraform, AWS EC2, Azure,
 Prometheus/Grafana.
 
-These repos: FastAPI, Pydantic, OpenAI, SQLite, n8n, RAG/Chroma/LangChain,
-Vapi, systemd/Ubuntu, trading-research CLIs.
+These repos: FastAPI, Pydantic, OpenAI, Gemma 4 on AMD, SQLite, Next.js, n8n,
+RAG/Chroma/LangChain, Vapi, systemd/Ubuntu, trading-research CLIs.
 
 ---
 
 ## Hackathons
+
+### ShelfReady — Trust Layer for Product Data (AMD Developer Hackathon: ACT III, lablab.ai, Oct 2026)
+
+**Repository:** https://github.com/KostiantynBk/shelfready  
+**Live demo:** https://shelfready-liard.vercel.app  
+**Submission & demo video:** https://lablab.ai/ai-hackathons/amd-developer-hackathon-act-iii/zenin/shelfready-trust-layer-for-product-data  
+**Tech stack:** Gemma 4 31B (vision + text) on AMD Token Factory and an AMD Instinct MI300X (vLLM on ROCm), Python, FastAPI, Pydantic, SQLite, Next.js 16, React 19, Evolus (agent, knowledge library, email AI Tool), Vercel
+
+Solo entry for the Reinvent Commerce and Evolus Business Agents tracks, built in under a week. Online shops copy product data from supplier emails (spec sheet PDF, photos, care label, dimension drawing) that often contradict each other: a wrong size, colour or washing instruction becomes a return, and EU product-safety law (GPSR) requires manufacturer details and safety warnings in the shopper's language. ShelfReady checks the supplier's data against its own evidence before anything goes live.
+
+**How it works:**
+
+* **Read.** Gemma 4 31B extracts the spec from the PDF and reads every photo, care label and dimension drawing, with bounding boxes as evidence.
+* **Check.** 17 rules in plain Python compare the supplier's claims with its own evidence and EU listing rules; units and numbers are handled in code, not by the model.
+* **Decide.** A review screen shows the spec sheet and the photo side by side with the contradiction highlighted. Measurements the supplier's own drawing settles collapse into one line; everything else waits for a person, and open facts are held back instead of guessed.
+* **Publish.** Listing copy, safety warnings and alt text are written from verified facts only, translated into 7 languages and checked in code (numbers, units, names, glossary). A publish gate blocks anything with an open legal item.
+* **Evolus agents.** Evolus writes the email that asks the supplier the open questions, and answers shoppers on the shop page from a knowledge library of verified facts, running on the same Gemma 4 31B.
+
+**Results:**
+
+* 57 of 59 planted defects found across 25 supplier submissions (recall 0.966, precision 0.983), with no false alarm on the 6 clean products.
+* Audited 250 real Amazon Berkeley Objects listings (900 photos); a person confirmed 29 of 30 photo findings, including a wristwatch filed under chairs, logo-only listings and a brown sofa whose photos are grey.
+* 1,593 live Gemma 4 31B calls on AMD; on one MI300X the model read 144 photos per minute (about €0.21 per 1,000 photos).
+
+**Why it matters:**
+
+This project demonstrates building a trustworthy LLM product: a vision model reads documents and photos, deterministic code makes the decisions, every flag shows its evidence, a person stays in control of every fact, and accuracy is measured against a planted ground truth and a human spot check.
+
+---
 
 ### RuleProof — Tested Rules for AI Coding Agents (IBM Bob 2.0 Hackathon, lablab.ai, Sep 2026)
 

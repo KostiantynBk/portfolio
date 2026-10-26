@@ -32,6 +32,38 @@ RAG/Chroma/LangChain, Vapi, systemd/Ubuntu, trading-research CLIs.
 
 ## Hackathons
 
+### rulejudge — A Judge That Learns from an Expert (Hacktoberfest Hack Day Barcelona, Oct 2026)
+
+**Repository:** https://github.com/KostiantynBk/metalearning-llmaaj
+
+**Results, limitations & run instructions:** https://github.com/KostiantynBk/metalearning-llmaaj#results--full-real-public-run-24-oct-2026
+
+**Tech stack:** Python, Gemma 4 26B-A4B via Gemini API, Docker, structured JSON assessment, automated testing
+
+Solo entry for the Plata challenge: infer an expert's hidden review requirements from labeled bank-support conversations, then judge new whole conversations as `good` or `bad`. The design synthesizes ideas from SAJA, Support Vector Rubrics and SPEAR; it is not a reproduction of their algorithms or benchmark gains.
+
+**How it works:**
+
+* **Learn.** Contrast same-topic bad/good training examples to induce compact requirements, each with applicability and violation boundaries; add an explicitly fixed general correctness check, R00.
+* **Assess.** One Gemma request per conversation scores all applicable rules and supplies short evidence pointers. A local non-compensating decision layer marks the conversation `bad` when an active rule meets the selected violation threshold.
+* **Package.** Separate Docker `adapt` and `eval` stages persist a frozen runtime and an automatically generated, training-backed explanation; priors-first atomic checkpoints keep output complete if model calls fail.
+
+**Results:**
+
+* On 150 public training and 80 public test examples, macro topic accuracy was **0.833 vs 0.826** for same-model zero-shot Gemma. Both classified 65/80 correctly, with five unique wins each: **no accuracy improvement was demonstrated**.
+* Detected 22/30 bad conversations versus 18/30 for zero-shot, but falsely flagged 7/50 good conversations versus 3/50, exposing a recall–false-positive trade-off.
+* 204 tests passed. Docker cache replay reproduced the learned rulebook, decision head and predictions; this verifies reproduction with saved responses, not fresh-API stability.
+
+**Limitations & next steps:**
+
+Public-test smoke results informed R00 and model selection, so the reported result is not an untouched held-out estimate. No spending-specific rule was learned. Single-pass judgments lack independent semantic verification, and evidence pointers are not factual proof. Next experiments are controlled verification-pass and rule-ablation comparisons, training-only coverage refinement, and evaluation on untouched data—not claimed improvements.
+
+**Why it matters:**
+
+This project demonstrates research-to-implementation judgment, training/test separation in the runtime, structured LLM evaluation, tested container workflows and honest interpretation of a result that did not beat its baseline. Craft Agent and parallel AI coding agents assisted architecture review, implementation and tests; Gemma is the submitted runtime model. No private training or jury examples are published here.
+
+---
+
 ### ShelfReady — Trust Layer for Product Data (AMD Developer Hackathon: ACT III, lablab.ai, Oct 2026)
 
 **Repository:** https://github.com/KostiantynBk/shelfready  

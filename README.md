@@ -6,15 +6,18 @@ multi-agent products; repos below are selected systems you can run.
 
 ## Skills
 
-**Backend & data:** Python, FastAPI, Pydantic, asyncio, Redis, PostgreSQL,
-TimescaleDB, SQLite, DuckDB, Polars
+**Backend & data:** Python, FastAPI, Pydantic, asyncio, TypeScript, Node.js,
+Fastify, Zod, WebSocket, Redis, PostgreSQL, TimescaleDB, SQLite, DuckDB, Polars
 
 **Trading & research:** WebSocket, FIX, NumPy, pandas, SciPy, statsmodels,
 scikit-learn, PyTorch, MATLAB, Jupyter, Parquet, S3
 
-**Agents & RAG:** OpenAI Responses API, n8n, MCP, Vapi.ai, LangChain,
-Chroma, Sentence-Transformers, IBM Bob (IDE, Shell, custom modes, subagents),
+**Agents & RAG:** OpenAI Responses API, Meta Model API (Muse Spark, structured
+outputs, background web search), n8n, MCP, Vapi.ai, LangChain, Chroma,
+Sentence-Transformers, IBM Bob (IDE, Shell, custom modes, subagents),
 Evolus (agents, knowledge libraries, AI Tools)
+
+**Web & testing:** React, Vite, Vitest, deterministic state reducers, journal replay
 
 **Open models:** Gemma 4 (vision + text), vLLM on AMD ROCm (Instinct MI300X), AMD Token Factory
 
@@ -25,12 +28,45 @@ Client work (not in these repos): FIX / WebSocket ingest, Kafka, Aeron
 Spark, Parquet/S3, DuckDB/Polars, Docker/K8s, Terraform, AWS EC2, Azure,
 Prometheus/Grafana.
 
-These repos: FastAPI, Pydantic, OpenAI, Gemma 4 on AMD, SQLite, Next.js, n8n,
+These repos: FastAPI, Pydantic, TypeScript/Node.js/Fastify, React/Vite,
+OpenAI, Meta Muse Spark, Gemma 4 on AMD, SQLite, Next.js, n8n,
 RAG/Chroma/LangChain, Vapi, systemd/Ubuntu, trading-research CLIs.
 
 ---
 
 ## Hackathons
+
+### Sidethought — A Second Person for Your Idea (Meta Global AI Developer Hackathon, Nov 2026)
+
+**Repository & setup:** https://github.com/KostiantynBk/sidethought
+
+**Demo video:** https://youtu.be/jAXqxTsp-fo
+
+**Status:** Submitted solo entry, Indie Developer track, Build for Your World theme; early prototype, not a production service.
+
+**Tech stack:** TypeScript, Node.js 24, Fastify, WebSocket, React, Vite, SQLite, Zod, Vitest, Meta Model API (`muse-spark-1.3`, Responses API, structured outputs, background web search)
+
+Coding assistants help once you know what to build; working out the idea itself is often still a solo task. Sidethought is a text-first thinking partner that researches assumptions while the conversation continues and contributes its own suggestions without waiting for another prompt. It tracks changes to the plan so earlier advice can be marked outdated rather than repeatedly argued against the wrong version.
+
+**How it works:**
+
+* **Five model roles, one state authority.** Interpreter extracts quote-backed plan changes; Responder streams replies; Deliberator decides what merits research or a contribution; Investigator searches; Checker reviews proposed unprompted remarks. A deterministic, single-writer reducer owns each project's versioned state: models propose, application code validates and decides.
+* **Research alongside conversation.** Background search does not block the foreground reply. Sidethought fetches cited pages itself and checks that supporting quotes appear in the retrieved text; finding cards distinguish verified quotes from citation-only claims. A matching quote is not proof that a claim is true or follows from it.
+* **Advice tied to its basis.** Findings and queued contributions carry dependencies on plan items. Changes trigger stale checks and delivery-time validation. The submitted video shows a running-club app on Supabase Free, an unprompted restore-and-login verification suggestion, then a switch to Pro with the old finding marked as applying to an earlier version. The suggested restore test was not executed.
+* **Reviewed memory, not hidden profiling.** Separate named projects can share explicitly reviewed lessons, with source attribution and recall off by default. SQLite journals and snapshots support replay-based state upgrades; optional browser read-aloud is output only.
+
+**Evidence & limitations:**
+
+* Typecheck, production build and **1,486 automated tests across 135 files** passed on Nov 4. These are engineering checks, not proof of reliable live judgment.
+* In small, nonrandomized tuned live samples, research-backed ideas were delivered in **4 of 7 runs**; plan corrections were saved in **5 of 7 later live tests**. These are separate experiments, not benchmark accuracy or a guarantee that initiative and corrections work every time.
+* A fresh two-project test recalled a source-only fact with attribution in a reply. Unprompted delivery of a cross-project lesson and improved decision quality were not established.
+* Source access and model judgment remain imperfect; caveats can be lost. Voice input and spoken turn-taking, away research, and starter-repository creation remain planned. No hosted live demo is currently offered; use the video or local setup.
+
+**Why it matters:**
+
+This project demonstrates asynchronous agent orchestration, event-driven state management, structured-output validation, evidence provenance, version-aware invalidation and explicit memory controls. I directed AI coding agents through scoped tasks and review gates; Meta Muse Spark is the application runtime. All repository code was written for this event from Oct 27; an earlier exploration of the idea contributed no reused code.
+
+---
 
 ### rulejudge — A Judge That Learns from an Expert (Hacktoberfest Hack Day Barcelona, Oct 2026)
 

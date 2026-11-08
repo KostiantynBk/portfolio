@@ -15,13 +15,14 @@ scikit-learn, PyTorch, MATLAB, Jupyter, Parquet, S3
 **Agents & RAG:** OpenAI Responses API, Meta Model API (Muse Spark, structured
 outputs, background web search), n8n, MCP, Vapi.ai, LangChain, Chroma,
 Sentence-Transformers, IBM Bob (IDE, Shell, custom modes, subagents),
-Evolus (agents, knowledge libraries, AI Tools)
+Evolus (agents, knowledge libraries, AI Tools), Vultr Serverless Inference,
+mutation testing, deterministic evidence verification
 
 **Web & testing:** React, Vite, Vitest, deterministic state reducers, journal replay
 
 **Open models:** Gemma 4 (vision + text), vLLM on AMD ROCm (Instinct MI300X), AMD Token Factory
 
-**Delivery:** Docker, Kubernetes, Terraform, AWS (EC2), Azure, Vercel, GitHub Actions, CircleCI, Prometheus, Grafana, systemd, Ubuntu
+**Delivery:** Docker, gVisor (runsc), Vultr Cloud Compute, Kubernetes, Terraform, AWS (EC2), Azure, Vercel, GitHub Actions, CircleCI, Prometheus, Grafana, systemd, Ubuntu
 
 Client work (not in these repos): FIX / WebSocket ingest, Kafka, Aeron
 (low-latency order messaging), Redis Streams, TimescaleDB, Postgres,
@@ -29,12 +30,49 @@ Spark, Parquet/S3, DuckDB/Polars, Docker/K8s, Terraform, AWS EC2, Azure,
 Prometheus/Grafana.
 
 These repos: FastAPI, Pydantic, TypeScript/Node.js/Fastify, React/Vite,
-OpenAI, Meta Muse Spark, Gemma 4 on AMD, SQLite, Next.js, n8n,
-RAG/Chroma/LangChain, Vapi, systemd/Ubuntu, trading-research CLIs.
+OpenAI, Meta Muse Spark, Gemma 4 on AMD, Vultr Serverless Inference,
+SQLite, Next.js, n8n, RAG/Chroma/LangChain, Vapi, gVisor sandboxes,
+systemd/Ubuntu, trading-research CLIs.
 
 ---
 
 ## Hackathons
+
+### Proof of Done — Evidence for AI's “Done” (Vultr Agent Rush Hackathon, Nov 2026)
+
+**Repository & setup:** https://github.com/KostiantynBk/proof-of-done
+
+**Live demo:** https://108-61-195-77.sslip.io/
+
+**Submission, video & slides:** https://lablab.build/ai-hackathons/vultr-hackathon/zenin/proof-of-done
+
+**Results & limitations:** https://github.com/KostiantynBk/proof-of-done/blob/main/docs/results/tuned-run-review.md
+
+**Status:** Submitted solo entry, Challenge 1 — Blast Radius Zero; deployed hackathon prototype, not a production service or compliance certification.
+
+**Tech stack:** Python, FastAPI, Pydantic, SQLite, React, TypeScript, Vite, Docker, gVisor (`runsc`), Vultr Cloud Compute, Vultr Serverless Inference (DeepSeek, GLM and MiniMax), Caddy, systemd
+
+Passing tests do not necessarily guard the behavior a team cares about. Proof of Done reads a specification and review history, checks the agent's evidence, then runs AI-proposed sabotage edits against the tests in disposable sandboxes. Engineering leads can inspect the execution receipts and review proposed guard tests rather than accept an AI coverage claim.
+
+**How it works:**
+
+* **Extract and verify.** Model roles extract requirements, mine recurring review rules and cite implementing code and tests. Deterministic checks validate verbatim quotes, source locations and evidence from independent reviews.
+* **Challenge the tests.** Targeted and test-blind agents propose mutations. An AST allowlist filters edits before fresh sandboxes execute them; only a named failing pytest test counts as a kill, not a timeout or crash. A deterministic verdict ladder separates PROVEN, WEAK and UNTESTED results.
+* **Contain execution.** A Vultr VM hosts the orchestrator, web UI and runner; all agent model calls use Vultr Serverless Inference. Untrusted code runs as non-root in network-disabled gVisor containers with a read-only root filesystem, memory/CPU/PID limits, a wall-clock kill and recorded teardown. Fake credential canaries support best-effort telemetry; the runtime and configuration enforce isolation.
+* **Review and export.** Candidate guard tests run against original code and surviving mutations before reviewer approval for patch inclusion. Reports, patches and hash-chained receipts preserve execution evidence; hashes check consistency, not authenticated provenance.
+
+**Evidence & limitations:**
+
+* One recorded, seeded refund-service audit returned **4 PROVEN, 6 WEAK and 2 UNTESTED** items, versus 10 model coverage claims. **All 65 sandbox records showed destruction.** Two guards were approved and four rejected by Craft Agent navigator under delegated review, not personally by me; no team rule reached PROVEN.
+* Four gap attempts were skipped and one component-failure entry was recorded. Equivalent or off-target mutations and a rejected guard's own invalid assumption showed why a survivor or a generated failure is not automatically a product defect. These results are not benchmark accuracy or proof that defects are absent.
+* A separately tested current sandbox image passed bounded real-VM checks for network isolation against a reachable control, memory/PID/time caps and cleanup. All 11 test containers (10 gVisor plus one runc control) were absent afterward; this does not revalidate the historical audit on the newer image. The submitted video includes a continuous real fake-canary containment attempt and teardown; failed DNS to an `.invalid` destination alone is not isolation proof.
+* Python/pytest targets only. Audit-hook telemetry is best effort, and original audit exports are preserved snapshots with a separately published interpretation.
+
+**Why it matters:**
+
+This project demonstrates deployed multi-agent orchestration, constrained code execution, mutation-based evaluation, deterministic evidence checks, approval gates and auditable teardown. I directed AI coding agents through scoped implementation and review tasks. Fresh event code builds on methods from my RuleProof and Shehar Bano's SoloTrace, with both credited in the repository; no code from either was reused.
+
+---
 
 ### Sidethought — A Second Person for Your Idea (Meta Global AI Developer Hackathon, Nov 2026)
 

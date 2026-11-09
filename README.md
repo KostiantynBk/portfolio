@@ -46,6 +46,8 @@ systemd/Ubuntu, trading-research CLIs.
 
 **Submission, video & slides:** https://lablab.build/ai-hackathons/vultr-hackathon/zenin/proof-of-done
 
+**Certificate of Completion:** https://lablab.build/u/@Zenin/ai-hackathons/vultr-hackathon/certificate
+
 **Results & limitations:** https://github.com/KostiantynBk/proof-of-done/blob/main/docs/results/tuned-run-review.md
 
 **Status:** Submitted solo entry, Challenge 1 — Blast Radius Zero; deployed hackathon prototype, not a production service or compliance certification.
